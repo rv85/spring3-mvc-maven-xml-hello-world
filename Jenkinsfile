@@ -29,7 +29,7 @@ pipeline {
                  //for verification
                  echo "echo ${files[0].name} ${files[0].path} ${files[0].directory} ${files[0].length} ${files[0].lastModified}"
                  //get the path location
-                 artifactPath - files[0].path;
+                 artifactPath = files[0].path;
                  //validating if file exists and storing in a variable
                  artifactExists = fileExists artifactPath;
                  echo "If artifact exists"
