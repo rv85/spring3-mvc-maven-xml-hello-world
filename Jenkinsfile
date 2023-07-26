@@ -28,6 +28,12 @@ pipeline {
                  files = findFiles(glob:"target/*.${pom.packaging}") //what ever is package we will get it here either it is jar or war file
                  //for verification
                  echo "echo ${files[0].name} ${files[0].path} ${files[0].directory} ${files[0].length} ${files[0].lastModified}"
+                 //get the path location
+                 artifactPath - files[0].path;
+                 //validating if file exists and storing in a variable
+                 artifactExists = fileExists artifactPath;
+                 echo "If artifact exists"
+                 echo "${artifactExists}"
                   }
                
             }
