@@ -20,6 +20,19 @@ pipeline {
                 }
             }
         }
+        stage ('Nexus') {
+            steps {
+                script {
+                 pom = readMavenPom file: "pom.xml"
+                 // we need to read pom to see what packages we have,artifact id, version, snapshot/release
+                 files = findFiles(glob:"target/*.${pom.packaging}") //what ever is package we will get it here either it is jar or war file
+                 //for verification
+                 echo "echo ${files[0].name"}  ${files[0].directory} ${files[0].length} ${files[0].path} ${files[0].lastModified}"
+                  }
+               
+
+            }
+        }
         stage('Deploy to tomcat') {
             steps {
               //curl commands 
