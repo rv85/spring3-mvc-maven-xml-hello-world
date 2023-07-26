@@ -17,11 +17,6 @@ pipeline {
                 }
             }
         }
-        stage('Deploy to tomcat') {
-            steps {
-              //curl commands 
-              sh "curl -v -u sivaacademy:Devops@12345  -T /var/lib/jenkins/workspace/Tomcatdeployment_allbranch/target/spring-petclinic-3.1.0-SNAPSHOT.war 'http://34.125.100.123:8080/manager/text/deploy?path=/foo/spring-hello'"
-            }
-        }
+       
     }
 }
