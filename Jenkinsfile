@@ -6,7 +6,10 @@ pipeline {
     }
     environment {
         TOMCAT_CREDS=credentials('tomcat-creds') //coming from jenkins creds
-        
+        NEXUS_VERSION= "nexus3"
+        NEXUS_PROTOCOL= "http"
+        NEXUS_URL= "http://34.125.253.15:8081"
+        NEXUS_REPO= "allrepo-release" //create in nexus
     }
     stages{
         stage('Build') {
@@ -40,6 +43,26 @@ pipeline {
                     echo "Artificat is available going to deploy to nexus"
                     echo "File is : ${artifactPath}, Package is : ${pom.packaging}, Version is : ${pom.version}, GroupId is : ${pom.groupId}"
                     //we need to deploy to nexus using a plugin called as nexus Artifact uploader
+                    nexusArtifactUploader (
+                        nexusVersion: "${env.NEXUS_VERSION}",
+                        protocol : "${env.NEXUS_PROTOCOL}",
+                        nexusUrl: "${env.NEXUS_URL}", //
+                        groupId: "${pom.groupId}",
+                        version: "${pom.version}",
+                        repository: "${env.NEXUS_REPO}",
+                        credentials="nexus-creds",
+                           artifacts: [
+                            [
+                            artifactId: pom.artifactId,
+                            type: pom.packaging,
+                            classifier: '',
+                            file: artifactPath
+                           ]
+                           ]
+                    )
+                 }
+                 else {
+                    error "*********${artifactPath} is not available ******"
                  }
                   }
                
