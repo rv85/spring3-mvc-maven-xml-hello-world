@@ -42,7 +42,7 @@ pipeline {
                     //run this piece of code
                     echo "Artificat is available going to deploy to nexus"
                     echo "File is : ${artifactPath}, Package is : ${pom.packaging}, Version is : ${pom.version}, GroupId is : ${pom.groupId}"
-                 
+                  echo "start"
                     //we need to deploy to nexus using a plugin called as nexus Artifact uploader
                     nexusArtifactUploader (
                         nexusVersion: "${env.NEXUS_VERSION}",
