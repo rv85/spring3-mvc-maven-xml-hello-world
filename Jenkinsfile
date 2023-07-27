@@ -48,7 +48,7 @@ pipeline {
                         protocol : "${env.NEXUS_PROTOCOL}",
                         nexusUrl: "${env.NEXUS_URL}", //
                         groupId: "${pom.groupId}",
-                        version: "${pom.version}",
+                        version: "${BUILD_NUMBER}",
                         repository: "${env.NEXUS_REPO}",
                         credentials="nexus-creds",
                            artifacts: [
