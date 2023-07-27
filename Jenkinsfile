@@ -45,7 +45,7 @@ pipeline {
                   echo "start"
                     //we need to deploy to nexus using a plugin called as nexus Artifact uploader
                     nexusArtifactUploader {
-                        nexusVersion: "${env.NEXUS_VERSION}",
+                        nexusVersion: "$env.NEXUS_VERSION",
                         protocol : "${env.NEXUS_PROTOCOL}",
                         nexusUrl: "${env.NEXUS_URL}", //
                         groupId: "${pom.groupId}",
