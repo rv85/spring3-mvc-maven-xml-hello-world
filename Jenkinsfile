@@ -6,7 +6,7 @@ pipeline {
     }
     environment {
         TOMCAT_CREDS=credentials('tomcat-creds') //coming from jenkins creds
-        artifactPath = files[0].path;
+        
     }
     stages{
         stage('Build') {
