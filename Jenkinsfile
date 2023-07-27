@@ -44,24 +44,24 @@ pipeline {
                     echo "File is : ${artifactPath}, Package is : ${pom.packaging}, Version is : ${pom.version}, GroupId is : ${pom.groupId}"
                  
                     //we need to deploy to nexus using a plugin called as nexus Artifact uploader
-                    nexusArtifactUploader (
-                        nexusVersion: "$env.NEXUS_VERSION",
-                        protocol : "${env.NEXUS_PROTOCOL}",
-                        nexusUrl: "${env.NEXUS_URL}", //
-                        groupId: "${pom.groupId}",
-                        version: "${pom.version}",
-                        repository: "${env.NEXUS_REPO}",
-                        credentials="nexus-creds",
-                           artifacts: [
-                            [
-                                 artifactId: pom.artifactId,
-                                 calssifier: '',
-                                 file: artifactPath,
-                                 type:pom.packaging
-                            ]
+                   // nexusArtifactUploader (
+                       // nexusVersion: "$env.NEXUS_VERSION",
+                       // protocol : "${env.NEXUS_PROTOCOL}",
+                      //  nexusUrl: "${env.NEXUS_URL}", //
+                      //  groupId: "${pom.groupId}",
+                      //  version: "${pom.version}",
+                      //  repository: "${env.NEXUS_REPO}",
+                      //  credentials="nexus-creds",
+                       //    artifacts: [
+                        //    [
+                         //        artifactId: pom.artifactId,
+                         //        calssifier: '',
+                         //        file: artifactPath,
+                          //       type:pom.packaging
+                          //  ]
                             
-                           ]
-                    )
+                          // ]
+                   // )
                 
                  }
                  else {
