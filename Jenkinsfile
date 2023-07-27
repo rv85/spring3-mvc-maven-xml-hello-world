@@ -45,22 +45,22 @@ pipeline {
                  
                     //we need to deploy to nexus using a plugin called as nexus Artifact uploader
                     nexusArtifactUploader (
-                       // nexusVersion: "$env.NEXUS_VERSION",
-                       // protocol : "${env.NEXUS_PROTOCOL}",
-                      //  nexusUrl: "${env.NEXUS_URL}", //
-                      //  groupId: "${pom.groupId}",
-                      //  version: "${pom.version}",
-                      //  repository: "${env.NEXUS_REPO}",
-                      //  credentials="nexus-creds",
-                       //    artifacts: [
-                        //    [
-                         //        artifactId: pom.artifactId,
-                         //        calssifier: '',
-                         //        file: artifactPath,
-                          //       type:pom.packaging
-                          //  ]
+                        nexusVersion: "$env.NEXUS_VERSION",
+                        protocol : "${env.NEXUS_PROTOCOL}",
+                        nexusUrl: "${env.NEXUS_URL}", //
+                        groupId: "${pom.groupId}",
+                        version: "${pom.version}",
+                        repository: "${env.NEXUS_REPO}",
+                        credentials="nexus-cred1",
+                           artifacts: [
+                            [
+                                 artifactId: pom.artifactId,
+                                calssifier: '',
+                                 file: artifactPath,
+                                 type:pom.packaging
+                           ]
                             
-                          // ]
+                           ]
                     )
                 
                  }
