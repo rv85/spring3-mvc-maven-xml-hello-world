@@ -42,7 +42,7 @@ pipeline {
                     //run this piece of code
                     echo "Artificat is available going to deploy to nexus"
                     echo "File is : ${artifactPath}, Package is : ${pom.packaging}, Version is : ${pom.version}, GroupId is : ${pom.groupId}"
-                 }
+                 
                     //we need to deploy to nexus using a plugin called as nexus Artifact uploader
                     nexusArtifactUploader (
                         nexusVersion: "${env.NEXUS_VERSION}",
@@ -61,6 +61,7 @@ pipeline {
                            ]
                            ]
                     )
+                
                  }
                  else {
                     error "*********${artifactPath} is not available ******"
@@ -69,10 +70,14 @@ pipeline {
                
             }
         }
+        
+
         stage('Deploy to tomcat') {
             steps {
               //curl commands 
               sh "curl -v -u ${TOMCAT_CREDS_USR}:${TOMCAT_CREDS_PSW}  -T /home/admin/jenkins/workspace/Tomcatdeployment_all/${artifactPath} 'http://34.125.100.123:8080/manager/text/deploy?path=/foo/spring-hello&update=true'"
             }
+        }
+    
         }
     }
