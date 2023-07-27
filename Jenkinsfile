@@ -9,7 +9,7 @@ pipeline {
         NEXUS_VERSION= "nexus3"
         NEXUS_PROTOCOL= "http"
         NEXUS_URL= "http://34.125.253.15:8081"
-        NEXUS_REPO= "allrepo-release" //create in nexus
+        NEXUS_REPO= "second" //create in nexus
     }
     stages{
         stage('Build') {
@@ -42,6 +42,7 @@ pipeline {
                     //run this piece of code
                     echo "Artificat is available going to deploy to nexus"
                     echo "File is : ${artifactPath}, Package is : ${pom.packaging}, Version is : ${pom.version}, GroupId is : ${pom.groupId}"
+                 }
                     //we need to deploy to nexus using a plugin called as nexus Artifact uploader
                     nexusArtifactUploader (
                         nexusVersion: "${env.NEXUS_VERSION}",
@@ -54,8 +55,8 @@ pipeline {
                            artifacts: [
                             [
                             artifactId: pom.artifactId,
-                            type: pom.packaging,
                             classifier: '',
+                            type: pom.packaging,
                             file: artifactPath
                            ]
                            ]
@@ -75,4 +76,3 @@ pipeline {
             }
         }
     }
-}
